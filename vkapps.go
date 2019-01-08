@@ -1,16 +1,17 @@
+// Package vkapps provides with some useful serverside functions for vkapps.
+// More info about vkapps https://vk.com/dev/vk_apps_docs
 package vkapps
 
 import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/base64"
-	"log"
 	"net/url"
 	"sort"
 	"strings"
 )
 
-// IsSignValid validates vk sign for provided vk url https://vk.com/dev/vk_apps_docs?f=7.%2BLaunch%2BParameters
+// IsSignValid validates vk sign for provided vk launch parametres https://vk.com/dev/vk_apps_docs?f=7.%2BLaunch%2BParameters
 func IsSignValid(appURL, clientSecret string) (bool, error) {
 
 	u, err := url.Parse(appURL)
@@ -22,7 +23,7 @@ func IsSignValid(appURL, clientSecret string) (bool, error) {
 
 	parsedQuery, err := url.ParseQuery(query)
 	if err != nil {
-		log.Fatal(err)
+		return false, err
 	}
 
 	expectedSign := parsedQuery.Get("sign")
