@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-// IsSignValid validates vk sign for provided vk launch parametres https://vk.com/dev/vk_apps_docs?f=7.%2BLaunch%2BParameters
+// IsSignValid validates vk sign for provided vk launch parametres https://vk.com/dev/vk_apps_docs2?f=6.%2BLaunch%2BParameters
 func IsSignValid(appURL, clientSecret string) (bool, error) {
 
 	u, err := url.Parse(appURL)
