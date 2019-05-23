@@ -45,7 +45,10 @@ func IsSignValid(appURL, clientSecret string) (bool, error) {
 	signParamQuery := vkQuery.Encode()
 
 	mac := hmac.New(sha256.New, []byte(clientSecret))
-	mac.Write([]byte(signParamQuery))
+	_, err = mac.Write([]byte(signParamQuery))
+	if err != nil {
+		return false, err
+	}
 	expectedMAC := mac.Sum(nil)
 
 	baseEncoded := base64.StdEncoding.EncodeToString(expectedMAC)
